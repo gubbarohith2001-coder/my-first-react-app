@@ -1,8 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Search from "./components/search.jsx";
+
+const API_BASE_URL = "http://localhost:3000/";
+
+const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+  },
+};
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const fetchMovies = async => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
+
+  useEffect(() => {}, []);
   return (
     <main>
       <div className="pattern" />
