@@ -1,16 +1,34 @@
-# React + Vite
+# React Movie App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A movie browsing application built with **React** and **Vite**. It loads
+movie data from a local **JSON Server** API and displays movies in
+cards. Users can search the collection by movie title.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Fetches movie data from a local REST API.
+- Searches movies by title as you type.
+- Displays movie details in reusable movie cards.
+- Shows a loading spinner while data is being fetched.
+- Handles and displays fetch errors.
+- Uses a fallback image when a movie thumbnail is unavailable.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React** --- UI components and state management
+- **Vite** --- development server and build tooling
+- **JavaScript (ES6+)**
+- **CSS / utility-style classes** --- styling
+- **JSON Server** --- local mock REST API
 
-## Expanding the ESLint configuration
+## How It Works
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  `App.jsx` requests movie data from `http://localhost:3000/movies`.
+2.  React state tracks the search term, movie list, loading status, and
+    any error message.
+3.  The search term filters the fetched movie list by title, without
+    needing a new API request for each keystroke.
+4.  `Search.jsx` provides the controlled search input.
+5.  `MovieCard.jsx` renders each movie's information.
+6.  `Spinner.jsx` displays the loading state while the request is in
+    progress.
