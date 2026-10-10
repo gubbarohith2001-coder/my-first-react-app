@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Search from "./components/search.jsx";
-import Spinner from "./components/spinner.jsx";
+import Search from "./components/Search.jsx";
+import Spinner from "./components/Spinner.jsx";
+import MovieCard from "./components/MovieCard.jsx";
 
 const API_BASE_URL = "http://localhost:3000/movies";
 
@@ -71,9 +72,7 @@ const App = () => {
             ) : (
               <ul>
                 {movieList.map((movie) => (
-                  <li key={movie.id} className="text-white">
-                    {movie.title}
-                  </li>
+                  <MovieCard key={movie.id} movie={movie}/>
                 ))}
               </ul>
             )}
