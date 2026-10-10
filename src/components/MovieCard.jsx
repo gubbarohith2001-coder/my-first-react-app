@@ -7,17 +7,17 @@ const MovieCard = ({
     <div className="movie-card">
       <img src={thumbnail ? thumbnail : `/No movie.png`} alt={title} />
       <div className="my-4">
-        <h3>{title}</h3>
+        <h3>{title.slice(9)}</h3>
 
         <div className="content">
           <div className="rating">
             <img src="star.svg" alt="Star Icon" />
             <p>{rating ? rating : "N/A"}</p>
-            <span>•</span>
-            <p className="text-white">{duration ? duration : "N/A"}</p>
-            <span>•</span>
-            <p className="text-white">{releaseYear ? releaseYear : "N/A"}</p>
           </div>
+          <span>•</span>
+          <p className="text-white">{duration ? duration : "N/A"}</p>
+          <span>•</span>
+          <p className="text-white">{releaseYear ? releaseYear : "N/A"}</p>
         </div>
       </div>
     </div>

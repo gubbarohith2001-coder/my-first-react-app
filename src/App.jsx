@@ -21,26 +21,20 @@ const App = () => {
   const fetchMovies = async () => {
     setIsLoading(true);
     setErrorMessage("");
-    try {
-      const endpoint = `${API_BASE_URL}`;
 
-      const response = await fetch(endpoint, API_OPTIONS);
+    try {
+      const response = await fetch(API_BASE_URL, API_OPTIONS);
 
       if (!response.ok) {
-        throw new Error("Failed to fetch Movies");
+        throw new Error("Failed to fetch movies");
       }
 
       const data = await response.json();
 
-      if (data.Response === "False") {
-        setErrorMessage(data.error || "failed to fetch movies");
-        setMovieList([]);
-        return;
-      }
       setMovieList(data);
     } catch (error) {
-      console.error(`Error fetching movies: ${error}`);
-      setErrorMessage("Error fetching movies. please try again later.");
+      console.error("Error fetching movies:", error);
+      setErrorMessage("Error fetching movies. Please try again later.");
     } finally {
       setIsLoading(false);
     }
@@ -49,6 +43,12 @@ const App = () => {
   useEffect(() => {
     fetchMovies();
   }, []);
+
+  // Search functionality
+  const filteredMovies = movieList.filter((movie) =>
+    movie.title?.toLowerCase().includes(searchTerm.trim().toLowerCase()),
+  );
+
   return (
     <main>
       <div className="pattern" />
@@ -56,30 +56,38 @@ const App = () => {
       <div className="wrapper">
         <header>
           <img src="./hero-img.png" alt="" />
+
           <h1>
             Find <span className="text-gradient">Movies</span> you'll Enjoy
             without Hassle
           </h1>
+
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+
           <section className="all-movies">
             <h2 className="mt-[40px]">All Movies</h2>
+
             {isLoading ? (
               <Spinner />
             ) : errorMessage ? (
-              <p key={movie.id} className="text-red-500">
-                {errorMessage}
-              </p>
-            ) : (
+              <p className="text-red-500">{errorMessage}</p>
+            ) : filteredMovies.length > 0 ? (
               <ul>
-                {movieList.map((movie) => (
-                  <MovieCard key={movie.id} movie={movie}/>
+                {filteredMovies.map((movie) => (
+                  <li key={movie.id}>
+                    <MovieCard movie={movie} />
+                  </li>
                 ))}
               </ul>
+            ) : (
+              <p className="text-white">
+                {searchTerm.trim()
+                  ? `No movies found for "${searchTerm}".`
+                  : "No movies available."}
+              </p>
             )}
           </section>
         </header>
-
-        <h1 className="text-white">{searchTerm}</h1>
       </div>
     </main>
   );
