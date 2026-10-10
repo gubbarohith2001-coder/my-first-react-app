@@ -1,11 +1,25 @@
 import React from "react";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({
+  movie: { title, rating, thumbnail, releaseYear, duration },
+}) => {
   return (
-    <div>
-      <p key={movie.id} className="text-white">
-        {movie.title}
-      </p>
+    <div className="movie-card">
+      <img src={thumbnail ? thumbnail : `/No movie.png`} alt={title} />
+      <div className="my-4">
+        <h3>{title}</h3>
+
+        <div className="content">
+          <div className="rating">
+            <img src="star.svg" alt="Star Icon" />
+            <p>{rating ? rating : "N/A"}</p>
+            <span>•</span>
+            <p className="text-white">{duration ? duration : "N/A"}</p>
+            <span>•</span>
+            <p className="text-white">{releaseYear ? releaseYear : "N/A"}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
