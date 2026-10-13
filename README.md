@@ -21,6 +21,7 @@ cards. Users can search the collection by movie title.
 - **CSS / utility-style classes** --- styling
 - **JSON Server** --- local mock REST API
 
+
 ## How It Works
 
 1.  `App.jsx` requests movie data from `http://localhost:3000/movies`.
