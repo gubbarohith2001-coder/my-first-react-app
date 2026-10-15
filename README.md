@@ -21,7 +21,6 @@ cards. Users can search the collection by movie title.
 - **CSS / utility-style classes** --- styling
 - **JSON Server** --- local mock REST API
 
-
 ## How It Works
 
 1.  `App.jsx` requests movie data from `http://localhost:3000/movies`.
@@ -33,3 +32,11 @@ cards. Users can search the collection by movie title.
 5.  `MovieCard.jsx` renders each movie's information.
 6.  `Spinner.jsx` displays the loading state while the request is in
     progress.
+
+Future Improvements
+
+- Add filters for genre, release year, or rating.
+- Add sorting and pagination.
+- Add a movie details page.
+- Connect to a production movie API.
+- Add responsive and accessibility improvements.
